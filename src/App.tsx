@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { loginCtx, loginCtxInterface, LoginCtxProvider } from './contexts';
-import Login from './components/login/Login';
+import { LoginCtxProvider } from './contexts';
+import { Login } from './components/login';
 
-import 'antd/dist/antd.min.css';
 import './App.css';
-import './global.css';
 
 function App() {
   return (
     <LoginCtxProvider>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<h1>Welcome to Homepage</h1>}></Route>
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<h1>Page not found</h1>} />
         </Routes>

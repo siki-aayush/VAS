@@ -1,14 +1,15 @@
-import { Button, Form, Input, InputRef } from 'antd';
-import { useContext, useRef, useState } from 'react';
+import { Button, Form, Input } from 'antd';
+import { useContext, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { loginCtx, loginCtxInterface } from '../../contexts';
+import { addUserLoginToLocalStorage } from '../../utils/localstorage.util';
 import './Login.css';
 
 interface loginDetailInterface {
   username: string;
   password: string;
 }
-const Login: React.FC = () => {
+export const Login: React.FC = () => {
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(loginCtx) as loginCtxInterface;
   const [msg, setMsg] = useState<string>('');
   const navigate = useNavigate();
@@ -17,6 +18,7 @@ const Login: React.FC = () => {
     console.log('values', values);
     if (values.username === 'user' && values.password === 'password') {
       setIsUserLoggedIn(true);
+      addUserLoginToLocalStorage('true');
       navigate('/');
     } else {
       setMsg('Incorrect username or password');
@@ -73,5 +75,3 @@ const Login: React.FC = () => {
     </div>
   );
 };
-
-export default Login;
