@@ -1,14 +1,32 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, InputRef } from 'antd';
+import { useContext, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { loginCtx, loginCtxInterface } from '../../contexts';
 import './Login.css';
 
+interface loginDetailInterface {
+  username: string;
+  password: string;
+}
 const Login: React.FC = () => {
-  const onFinish = () => {
-    console.log('finish');
+  const { isUserLoggedIn, setIsUserLoggedIn } = useContext(loginCtx) as loginCtxInterface;
+  const [msg, setMsg] = useState<string>('');
+  const navigate = useNavigate();
+
+  const onFinish = (values: loginDetailInterface) => {
+    console.log('values', values);
+    if (values.username === 'user' && values.password === 'password') {
+      setIsUserLoggedIn(true);
+      navigate('/');
+    } else {
+      setMsg('Incorrect username or password');
+    }
   };
 
   const onFinishFailed = () => {
     console.log('failed');
   };
+
   return (
     <div className="wrapper">
       <div className="card">
@@ -19,8 +37,6 @@ const Login: React.FC = () => {
           layout="vertical"
           size="large"
           name="login"
-          // labelCol={{ span: 8 }}
-          // wrapperCol={{ span: 18 }}
           initialValues={{ remember: true }}
           onFinish={onFinish}
           onFinishFailed={onFinishFailed}
@@ -40,6 +56,7 @@ const Login: React.FC = () => {
           >
             <Input.Password className="login__password" />
           </Form.Item>
+          <div style={{ textAlign: 'center', color: 'red' }}>{msg}</div>
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login__submit">
               Log in
@@ -47,7 +64,10 @@ const Login: React.FC = () => {
           </Form.Item>
         </Form>
         <div className="card__footer">
-          Don't have an account? <span>Sign up for free</span>
+          Don't have an account?{' '}
+          <span>
+            <Link to="#">Sign up for free</Link>
+          </span>
         </div>
       </div>
     </div>
