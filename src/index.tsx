@@ -6,11 +6,14 @@ import reportWebVitals from './reportWebVitals';
 
 import 'antd/dist/antd.min.css';
 import './global.css';
+import { LoginCtxProvider } from './contexts';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <App />
+    <LoginCtxProvider>
+      <App />
+    </LoginCtxProvider>
   </React.StrictMode>
 );
 

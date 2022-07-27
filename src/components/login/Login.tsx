@@ -10,15 +10,15 @@ interface loginDetailInterface {
   password: string;
 }
 export const Login: React.FC = () => {
-  const { isUserLoggedIn, setIsUserLoggedIn } = useContext(loginCtx) as loginCtxInterface;
+  const { setIsUserLoggedIn } = useContext(loginCtx) as loginCtxInterface;
   const [msg, setMsg] = useState<string>('');
   const navigate = useNavigate();
 
   const onFinish = (values: loginDetailInterface) => {
     console.log('values', values);
     if (values.username === 'user' && values.password === 'password') {
-      setIsUserLoggedIn(true);
       addUserLoginToLocalStorage('true');
+      setIsUserLoggedIn(true);
       navigate('/');
     } else {
       setMsg('Incorrect username or password');

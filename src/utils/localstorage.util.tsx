@@ -14,7 +14,7 @@ export const addUserLoginToLocalStorage = (isLoggedIn: string) => {
  * Checks whether the user is logged in or not
  * @returns {boolean}
  */
-export const isUserLoggedIn = (): boolean => {
+export const getUserLoginFromLocalStorage = (): boolean => {
   const loggedInStatus = localStorage.getItem(LocalStorageKeys.IS_LOGGED_IN);
   if (loggedInStatus === null) {
     return false;
