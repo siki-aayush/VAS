@@ -1,0 +1,39 @@
+:root {
+  /* primary color */
+  --primary: #4110a1;
+
+  /* Mobile fonts */
+  --small: 16px;
+  --medium: 18px;
+  --large: 21px;
+
+  /* Font weights */
+  --light: 300;
+  --regular: 400;
+  --regular-dark: 500;
+  --semi-bold: 600;
+  --bold: 700;
+}
+
+@media screen and (min-width: 768px) {
+  :root {
+    /* Desktop Fonts */
+    --small: 18px;
+    --medium: 30px;
+    --large: 35px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
