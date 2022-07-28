@@ -8,6 +8,7 @@ import { Home } from './components/homepage';
 import { useDispatch } from 'react-redux';
 import { setIsUserLoggedIn } from './reducers/authSlice';
 import AuthRoute from './hoc/AuthRoute';
+import AppointmentForm from './components/Appointment/AppointmentForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<AuthRoute />}>
           <Route path="/" element={<Home />} />
+          <Route path="/appointment" element={<AppointmentForm />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<h1>Page not found</h1>} />

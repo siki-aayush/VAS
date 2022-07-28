@@ -1,0 +1,16 @@
+.appointment {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.appointment form label {
+  font-size: var(--small);
+  margin-right: 15px;
+}
+
+.appointment button {
+  margin-top: 10px;
+  border-radius: 4px;
+}
