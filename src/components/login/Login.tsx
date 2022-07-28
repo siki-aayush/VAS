@@ -1,7 +1,8 @@
 import { Button, Form, Input } from 'antd';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { loginCtx, loginCtxInterface } from '../../contexts';
+import { setIsUserLoggedIn } from '../../reducers/authSlice';
 import { addUserLoginToLocalStorage } from '../../utils/localstorage.util';
 import './Login.css';
 
@@ -10,7 +11,9 @@ interface loginDetailInterface {
   password: string;
 }
 export const Login: React.FC = () => {
-  const { setIsUserLoggedIn } = useContext(loginCtx) as loginCtxInterface;
+  // const { isUserLoggedIn } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+
   const [msg, setMsg] = useState<string>('');
   const navigate = useNavigate();
 
@@ -18,7 +21,7 @@ export const Login: React.FC = () => {
     console.log('values', values);
     if (values.username === 'user' && values.password === 'password') {
       addUserLoginToLocalStorage('true');
-      setIsUserLoggedIn(true);
+      dispatch(setIsUserLoggedIn(true));
       navigate('/');
     } else {
       setMsg('Incorrect username or password');

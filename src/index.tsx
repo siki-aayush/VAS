@@ -6,14 +6,15 @@ import reportWebVitals from './reportWebVitals';
 
 import 'antd/dist/antd.min.css';
 import './global.css';
-import { LoginCtxProvider } from './contexts';
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <LoginCtxProvider>
+    <Provider store={store}>
       <App />
-    </LoginCtxProvider>
+    </Provider>
   </React.StrictMode>
 );
 
