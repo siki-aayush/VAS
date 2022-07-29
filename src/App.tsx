@@ -10,6 +10,7 @@ import { setIsUserLoggedIn } from './reducers/authSlice';
 import AuthRoute from './hoc/AuthRoute';
 import AppointmentForm from './components/Appointment/AppointmentForm';
 import ScheduleForm from './pages/userAppointmentSchedule/ScheduleForm';
+import ListSchedules from './pages/userAppointmentList/ListSchedules';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/appointment" element={<AppointmentForm />} />
           <Route path="/register-appointment" element={<ScheduleForm />} />
+          <Route path="/user/list-appointment" element={<ListSchedules />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<h1>Page not found</h1>} />
