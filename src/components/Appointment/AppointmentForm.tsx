@@ -9,11 +9,18 @@ const AppointmentForm = () => {
   const { Option } = Select;
   const dispatch = useDispatch();
 
+  /*
+   * Default layout for all the forms
+   */
   const layout = {
     labelCol: { span: 10 },
     wrapperCol: { span: 15 },
   };
 
+  /* validateMessages
+   * All the validation messages when the form
+   * is filled with wrong data
+   */
   const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -25,6 +32,11 @@ const AppointmentForm = () => {
     },
   };
 
+  /* onFinish
+   * Handles the form data when the form
+   * is submitted with all the valid data
+   * @param {any} values
+   */
   const onFinish = (values: any) => {
     dispatch(setAppointment(values));
   };

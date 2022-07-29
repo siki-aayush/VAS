@@ -9,6 +9,7 @@ import { useDispatch } from 'react-redux';
 import { setIsUserLoggedIn } from './reducers/authSlice';
 import AuthRoute from './hoc/AuthRoute';
 import AppointmentForm from './components/Appointment/AppointmentForm';
+import ScheduleForm from './pages/userAppointmentSchedule/ScheduleForm';
 
 function App() {
   const dispatch = useDispatch();
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<AuthRoute />}>
           <Route path="/" element={<Home />} />
           <Route path="/appointment" element={<AppointmentForm />} />
+          <Route path="/register-appointment" element={<ScheduleForm />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<h1>Page not found</h1>} />
