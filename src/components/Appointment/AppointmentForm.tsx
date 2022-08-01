@@ -10,6 +10,11 @@ const AppointmentForm = () => {
   const dispatch = useDispatch();
 
   /*
+   * List of all the vaccinations available
+   */
+  const vaccines: string[] = ['Pfizer', 'Verocel', 'JnJ', 'Astrozen'];
+
+  /*
    * Default layout for all the forms
    */
   const layout = {
@@ -61,10 +66,9 @@ const AppointmentForm = () => {
           <Input.Group compact>
             <Form.Item name="serviceType" noStyle rules={[{ required: true, message: 'Province is required' }]}>
               <Select placeholder="Select Service Type">
-                <Option value="pfier">Pfizer</Option>
-                <Option value="verocel">Verocel</Option>
-                <Option value="jnj">JnJ</Option>
-                <Option value="astrozen">Astrozen</Option>
+                {vaccines.map(opt => (
+                  <Option value={opt.toLowerCase()}>{opt}</Option>
+                ))}
               </Select>
             </Form.Item>
           </Input.Group>
