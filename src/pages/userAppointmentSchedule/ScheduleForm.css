@@ -1,0 +1,13 @@
+.user-appointment {
+  width: 80%;
+  margin: auto;
+  padding-top: 150px;
+}
+
+.user-appointment label {
+  margin-right: 14px;
+}
+
+.user-appointment .user-appointment__title {
+  margin-bottom: 40px;
+}

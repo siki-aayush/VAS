@@ -9,11 +9,23 @@ const AppointmentForm = () => {
   const { Option } = Select;
   const dispatch = useDispatch();
 
+  /*
+   * List of all the vaccinations available
+   */
+  const vaccines: string[] = ['Pfizer', 'Verocel', 'JnJ', 'Astrozen'];
+
+  /*
+   * Default layout for all the forms
+   */
   const layout = {
     labelCol: { span: 10 },
     wrapperCol: { span: 15 },
   };
 
+  /* validateMessages
+   * All the validation messages when the form
+   * is filled with wrong data
+   */
   const validateMessages = {
     required: '${label} is required!',
     types: {
@@ -25,6 +37,11 @@ const AppointmentForm = () => {
     },
   };
 
+  /* onFinish
+   * Handles the form data when the form
+   * is submitted with all the valid data
+   * @param {any} values
+   */
   const onFinish = (values: any) => {
     dispatch(setAppointment(values));
   };
@@ -49,10 +66,9 @@ const AppointmentForm = () => {
           <Input.Group compact>
             <Form.Item name="serviceType" noStyle rules={[{ required: true, message: 'Province is required' }]}>
               <Select placeholder="Select Service Type">
-                <Option value="pfier">Pfizer</Option>
-                <Option value="verocel">Verocel</Option>
-                <Option value="jnj">JnJ</Option>
-                <Option value="astrozen">Astrozen</Option>
+                {vaccines.map(opt => (
+                  <Option value={opt.toLowerCase()}>{opt}</Option>
+                ))}
               </Select>
             </Form.Item>
           </Input.Group>
