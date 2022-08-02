@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, DatePicker, Form, Input, InputNumber } from 'antd';
 import { useNavigate } from 'react-router-dom';
 
@@ -7,13 +7,15 @@ import { useNavigate } from 'react-router-dom';
  * Renders the registration form
  */
 const RegisterForm = () => {
+  const [confirmPassErr, setConfirmPassErr] = useState<string>('');
+
   interface registerInterface {
     firstName: string;
     lastName: string;
     email: string;
     dateOfBirth: moment.Moment;
     password: string;
-    'confirm-password': string;
+    confirmPassword: string;
   }
 
   const navigate = useNavigate();
@@ -41,7 +43,11 @@ const RegisterForm = () => {
    * @param {registerInterface} values
    */
   const onFinish = (values: registerInterface) => {
-    console.log(values);
+    if (values.password !== values.confirmPassword) {
+      setConfirmPassErr("The password and confirm password doesn't match");
+      return;
+    }
+
     console.log(values.dateOfBirth.format('YYYY-MM-DD'));
     navigate('/login');
   };
@@ -76,9 +82,11 @@ const RegisterForm = () => {
         <Input.Password placeholder="Password" />
       </Form.Item>
 
-      <Form.Item name="confirm-password" rules={[{ required: true, message: 'Please input your confirm password!' }]}>
+      <Form.Item name="confirmPassword" rules={[{ required: true, message: 'Please input your confirm password!' }]}>
         <Input.Password placeholder="Confirm Password" />
       </Form.Item>
+
+      <p style={{ color: 'red' }}>{confirmPassErr}</p>
 
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }} style={{ marginTop: '43px' }}>
         <Button type="primary" htmlType="submit">
