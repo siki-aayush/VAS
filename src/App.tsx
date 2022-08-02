@@ -11,6 +11,7 @@ import AuthRoute from './hoc/AuthRoute';
 import AppointmentForm from './components/Appointment/AppointmentForm';
 import ScheduleForm from './pages/userAppointmentSchedule/ScheduleForm';
 import ListSchedules from './pages/userAppointmentList/ListSchedules';
+import Register from './pages/register/Register';
 
 function App() {
   const dispatch = useDispatch();
@@ -31,7 +32,9 @@ function App() {
           <Route path="/register-appointment" element={<ScheduleForm />} />
           <Route path="/user/list-appointment" element={<ListSchedules />} />
         </Route>
+
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route path="*" element={<h1>Page not found</h1>} />
       </Routes>
     </BrowserRouter>

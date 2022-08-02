@@ -10,8 +10,8 @@
 .card {
   background-color: white;
   box-shadow: 0 0 50px #8080809e;
-  width: 500px;
-  height: 650px;
+  width: 475px;
+  height: 675px;
 
   display: flex;
   flex-direction: column;
@@ -21,7 +21,7 @@
 
 .card__title {
   font-size: var(--large);
-  margin-bottom: 40px;
+  margin-bottom: 45px;
   margin-left: -5px;
 }
 

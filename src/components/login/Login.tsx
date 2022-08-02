@@ -1,6 +1,6 @@
 import { Button, Form, Input } from 'antd';
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { setIsUserLoggedIn } from '../../reducers/authSlice';
 import { addUserLoginToLocalStorage } from '../../utils/localstorage.util';
