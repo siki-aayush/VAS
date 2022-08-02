@@ -1,0 +1,8 @@
+.add-patient {
+  height: 100vh;
+  flex-direction: column;
+}
+
+.add-patient .add-patient__title {
+  margin-bottom: 40px;
+}
