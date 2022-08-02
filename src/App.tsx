@@ -11,7 +11,9 @@ import AuthRoute from './hoc/AuthRoute';
 import AppointmentForm from './components/Appointment/AppointmentForm';
 import ScheduleForm from './pages/userAppointmentSchedule/ScheduleForm';
 import ListSchedules from './pages/userAppointmentList/ListSchedules';
+import PatientCreate from './pages/patientCreate/PatientCreate';
 import Register from './pages/register/Register';
+import PatientList from './pages/patientList/PatientList';
 
 function App() {
   const dispatch = useDispatch();
@@ -28,9 +30,11 @@ function App() {
       <Routes>
         <Route path="/" element={<AuthRoute />}>
           <Route path="/" element={<Home />} />
-          <Route path="/appointment" element={<AppointmentForm />} />
-          <Route path="/register-appointment" element={<ScheduleForm />} />
-          <Route path="/user/list-appointment" element={<ListSchedules />} />
+          <Route path="/user/appointment" element={<AppointmentForm />} />
+          <Route path="/user/appointment/list" element={<ListSchedules />} />
+          <Route path="/user/appointment/schedule" element={<ScheduleForm />} />
+          <Route path="/patient" element={<PatientList />} />
+          <Route path="/patient/add" element={<PatientCreate />} />
         </Route>
 
         <Route path="/login" element={<Login />} />
