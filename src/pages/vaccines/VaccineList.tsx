@@ -1,11 +1,9 @@
 import React from 'react';
 import { Button, List, Typography } from 'antd';
-import './ListSchedules.css';
 
-const data = ['schedules1', 'schedules2', 'schedules3', 'schedules4', 'schedules5'];
-
-const ListSchedules = () => {
+const VaccineList = () => {
   const { Title } = Typography;
+  const data = ['Verocell', 'Astrazenca', 'P-fizer', 'Johnson and Johnson', 'Astrazenca'];
   const onEdit = () => {
     console.log('editing');
   };
@@ -21,7 +19,7 @@ const ListSchedules = () => {
         loading={false}
         itemLayout="horizontal"
         bordered
-        header={<Title>Appointments</Title>}
+        header={<Title>Vaccines</Title>}
         // footer={<div>Footer</div>}
         dataSource={data}
         renderItem={item => (
@@ -44,4 +42,4 @@ const ListSchedules = () => {
   );
 };
 
-export default ListSchedules;
+export default VaccineList;

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, DatePicker, Form, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import { registerInterface } from '../../interfaces';
 
 /**
  * RegisterForm.
@@ -8,15 +9,6 @@ import { useNavigate } from 'react-router-dom';
  */
 const RegisterForm = () => {
   const [confirmPassErr, setConfirmPassErr] = useState<string>('');
-
-  interface registerInterface {
-    firstName: string;
-    lastName: string;
-    email: string;
-    dateOfBirth: moment.Moment;
-    password: string;
-    confirmPassword: string;
-  }
 
   const navigate = useNavigate();
 
