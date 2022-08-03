@@ -11,7 +11,6 @@ interface loginDetailInterface {
   password: string;
 }
 export const Login: React.FC = () => {
-  // const { isUserLoggedIn } = useSelector((state: RootState) => state.auth);
   const dispatch = useDispatch();
 
   const [msg, setMsg] = useState<string>('');

@@ -14,6 +14,8 @@ import ListSchedules from './pages/userAppointmentList/ListSchedules';
 import PatientCreate from './pages/patientCreate/PatientCreate';
 import Register from './pages/register/Register';
 import PatientList from './pages/patientList/PatientList';
+import VaccineCreate from './pages/vaccines/VaccineCreate';
+import VaccineList from './pages/vaccines/VaccineList';
 
 function App() {
   const dispatch = useDispatch();
@@ -33,8 +35,12 @@ function App() {
           <Route path="/user/appointment" element={<AppointmentForm />} />
           <Route path="/user/appointment/list" element={<ListSchedules />} />
           <Route path="/user/appointment/schedule" element={<ScheduleForm />} />
+
           <Route path="/patient" element={<PatientList />} />
           <Route path="/patient/add" element={<PatientCreate />} />
+
+          <Route path="/vaccines" element={<VaccineList />} />
+          <Route path="/vaccines/add" element={<VaccineCreate />} />
         </Route>
 
         <Route path="/login" element={<Login />} />

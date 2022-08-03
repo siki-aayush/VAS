@@ -1,0 +1,13 @@
+.addVaccine {
+  min-height: 100vh;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.addVaccine label {
+  margin-right: 10px;
+}
+
+.addVaccine .addVaccine__title {
+  margin-bottom: 50px;
+}
