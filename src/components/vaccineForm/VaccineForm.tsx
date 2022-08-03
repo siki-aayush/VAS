@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Form, Input, InputNumber, Select, DatePicker, Checkbox, Row, Col, Typography } from 'antd';
 import './VaccineForm.css';
-import { vaccineService } from '../../interfaces/vaccineInterface';
+import { vaccineService } from '../../interfaces';
 
 const VaccineForm = () => {
   const { Option } = Select;

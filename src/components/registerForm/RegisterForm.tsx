@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Button, DatePicker, Form, Input } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import { registerInterface } from '../../interfaces/registerInteface';
+import { registerInterface } from '../../interfaces';
 
 /**
  * RegisterForm.

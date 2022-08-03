@@ -18,4 +18,4 @@ export const appointmentSlice = createSlice({
 });
 
 export const { setAppointment } = appointmentSlice.actions;
-export default appointmentSlice.reducer;
+export const appointmentReducer = appointmentSlice.reducer;
