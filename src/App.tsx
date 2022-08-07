@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Login } from './components/login';
 
-import './App.css';
 import { getUserLoginFromLocalStorage } from './utils/localstorage.util';
 import { Home } from './components/homepage';
 import { useDispatch } from 'react-redux';
