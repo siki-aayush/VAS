@@ -2,12 +2,13 @@ import { Button, Form, Input } from 'antd';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import reqInstance from '../../axios/axios';
 import { setIsUserLoggedIn } from '../../reducers/authSlice';
 import { addUserLoginToLocalStorage } from '../../utils/localstorage.util';
 import './Login.css';
 
 interface loginDetailInterface {
-  username: string;
+  email: string;
   password: string;
 }
 export const Login: React.FC = () => {
@@ -16,14 +17,18 @@ export const Login: React.FC = () => {
   const [msg, setMsg] = useState<string>('');
   const navigate = useNavigate();
 
-  const onFinish = (values: loginDetailInterface) => {
-    console.log('values', values);
-    if (values.username === 'user' && values.password === 'password') {
-      addUserLoginToLocalStorage('true');
+  const onFinish = async (values: loginDetailInterface) => {
+    // Send the request to the server.
+    const resp = await reqInstance('/login', {
+      method: 'POST',
+      data: values,
+    });
+
+    // Checks if the request was successful.
+    if (resp.data.data) {
+      addUserLoginToLocalStorage('true', resp.data.data.token);
       dispatch(setIsUserLoggedIn(true));
       navigate('/');
-    } else {
-      setMsg('Incorrect username or password');
     }
   };
 
@@ -34,7 +39,7 @@ export const Login: React.FC = () => {
   return (
     <div className="wrapper">
       <div className="card">
-        <h1 className="card__title">
+        <h1 className="card__title" data-testid="test">
           Welcome to <span>VAS</span>
         </h1>
         <Form
@@ -46,13 +51,18 @@ export const Login: React.FC = () => {
           onFinishFailed={onFinishFailed}
           className="login"
         >
-          <Form.Item
+          <Form.Item name="email" label="Email" rules={[{ type: 'email' }]} className="login__email">
+            <Input placeholder="Email" />
+          </Form.Item>
+
+          {/* <Form.Item
             name="username"
             label="Username"
             rules={[{ required: true, message: 'Please input your username!' }]}
           >
             <Input className="login__username" />
-          </Form.Item>
+          </Form.Item> */}
+
           <Form.Item
             name="password"
             label="Password"
@@ -67,6 +77,7 @@ export const Login: React.FC = () => {
             </Button>
           </Form.Item>
         </Form>
+
         <div className="card__footer">
           Don't have an account?{' '}
           <span>

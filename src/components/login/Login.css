@@ -38,7 +38,7 @@
   font-size: var(--small);
 }
 
-.login__username,
+.login__email,
 .login__password {
   max-width: 300px;
   border-radius: 6px;

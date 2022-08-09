@@ -1,4 +1,4 @@
-import Rveact from 'react';
+import React from 'react';
 import VaccineForm from '../../components/vaccineForm/VaccineForm';
 import { Typography } from 'antd';
 

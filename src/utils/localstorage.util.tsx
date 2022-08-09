@@ -5,8 +5,13 @@ import { LocalStorageKeys } from '../enum/LocalStorageKeys.enum';
  * Adds whether the user is logged in or not to the local storage
  * @param {string} isLoggedIn
  */
-export const addUserLoginToLocalStorage = (isLoggedIn: string) => {
+export const addUserLoginToLocalStorage = (isLoggedIn: string, token: string) => {
   localStorage.setItem(LocalStorageKeys.IS_LOGGED_IN, isLoggedIn);
+  localStorage.setItem(LocalStorageKeys.TOKEN, token);
+};
+
+export const getUserTokenFromLocalStorage = () => {
+  return localStorage.getItem(LocalStorageKeys.TOKEN);
 };
 
 /**
