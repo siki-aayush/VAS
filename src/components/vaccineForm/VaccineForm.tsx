@@ -2,14 +2,35 @@ import React from 'react';
 import { Button, Form, Input, InputNumber, Select, DatePicker, Checkbox, Row, Col, Typography } from 'antd';
 import './VaccineForm.css';
 import { vaccineService } from '../../interfaces';
+import reqInstance from '../../axios/axios';
+import { useNavigate } from 'react-router-dom';
 
 const VaccineForm = () => {
   const { Option } = Select;
   const { RangePicker } = DatePicker;
   const { Title } = Typography;
+  const navigate = useNavigate();
 
-  const onFinish = (values: vaccineService) => {
-    console.log(values);
+  const onFinish = async (values: vaccineService) => {
+    const vaccineServiceData = {
+      service_name: values.service_name,
+      site_location: values.site_location,
+      dist_start_date: values?.duration[0].format('YYYY-MM-DD'),
+      dist_end_date: values?.duration[1].format('YYYY-MM-DD'),
+      number_of_doses: values.number_of_doses,
+      gender: values.gender,
+      ethnicity: values.ethnicity,
+      min_age: values.min_age,
+    };
+
+    const resp = await reqInstance('/vaccine-services', {
+      method: 'POST',
+      data: vaccineServiceData,
+    });
+
+    if (resp.data.data) {
+      navigate('/vaccines');
+    }
   };
 
   const layout = {
@@ -39,11 +60,11 @@ const VaccineForm = () => {
       size="large"
       className="vaccineForm"
     >
-      <Form.Item name="name" label="Vaccine Name" rules={[{ required: true }]}>
+      <Form.Item name="service_name" label="Vaccine Name" rules={[{ required: true }]}>
         <Input />
       </Form.Item>
 
-      <Form.Item name="location" label="Site Location" rules={[{ required: true }]}>
+      <Form.Item name="site_location" label="Site Location" rules={[{ required: true }]}>
         <Input />
       </Form.Item>
 
@@ -55,6 +76,14 @@ const VaccineForm = () => {
         <RangePicker showTime format="YYYY-MM-DD HH:mm:ss" />
       </Form.Item>
 
+      <Form.Item
+        name="number_of_doses"
+        label="Doses"
+        rules={[{ required: true, type: 'number', message: 'Please input doses!', min: 0, max: 20 }]}
+      >
+        <InputNumber style={{ maxWidth: '80px' }} />
+      </Form.Item>
+
       <Title level={4} className="ant-col-8 vaccineForm__eligible">
         Eligible Criteria
       </Title>
@@ -62,44 +91,22 @@ const VaccineForm = () => {
         <Select placeholder="select your gender">
           <Option value="male">Male Only</Option>
           <Option value="female">Female Only</Option>
-          <Option value="other">Both</Option>
+          <Option value="both">Both</Option>
         </Select>
       </Form.Item>
 
-      <Form.Item name={'age'} label="Minimum Age" rules={[{ type: 'number', min: 0, max: 130 }]}>
+      <Form.Item name="min_age" label="Minimum Age" rules={[{ type: 'number', min: 0, max: 130 }]}>
         <InputNumber />
       </Form.Item>
 
-      <Form.Item name="ethnicity" label="Ethnicity">
-        <Checkbox.Group>
-          <Row>
-            <Col span={8}>
-              <Checkbox value="asian" style={{ lineHeight: '32px' }}>
-                Asian
-              </Checkbox>
-            </Col>
-            <Col span={8}>
-              <Checkbox value="white" style={{ lineHeight: '32px' }}>
-                White
-              </Checkbox>
-            </Col>
-            <Col span={8}>
-              <Checkbox value="black" style={{ lineHeight: '32px' }}>
-                Black
-              </Checkbox>
-            </Col>
-            <Col span={12}>
-              <Checkbox value="americanIndian" style={{ lineHeight: '32px' }}>
-                American Indian
-              </Checkbox>
-            </Col>
-            <Col span={8}>
-              <Checkbox value="pacific" style={{ lineHeight: '32px' }}>
-                Pacific
-              </Checkbox>
-            </Col>
-          </Row>
-        </Checkbox.Group>
+      <Form.Item name="ethnicity" label="Ethnicity" rules={[{ required: true, message: 'Please select ethnicity!' }]}>
+        <Select placeholder="select your ethnicity">
+          <Option value="asian">Asian</Option>
+          <Option value="white">White</Option>
+          <Option value="black">Black</Option>
+          <Option value="american_indian">American Indian</Option>
+          <Option value="pacific">Pacific</Option>
+        </Select>
       </Form.Item>
 
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

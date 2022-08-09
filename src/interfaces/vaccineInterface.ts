@@ -1,8 +1,9 @@
 export interface vaccineService {
-  name: string;
-  location: string;
+  service_name: string;
+  site_location: string;
   duration: moment.Moment[];
   gender: string;
-  age: string;
+  min_age: number;
+  number_of_doses: number;
   ethnicity: string[];
 }
