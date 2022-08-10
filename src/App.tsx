@@ -15,6 +15,7 @@ import Register from './pages/register/Register';
 import PatientList from './pages/patientList/PatientList';
 import VaccineCreate from './pages/vaccines/VaccineCreate';
 import VaccineList from './pages/vaccines/VaccineList';
+import VaccineUpdate from './pages/vaccines/VaccineUpdate';
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,7 @@ function App() {
 
           <Route path="/vaccines" element={<VaccineList />} />
           <Route path="/vaccines/add" element={<VaccineCreate />} />
+          <Route path="/vaccines/:id" element={<VaccineUpdate />} />
         </Route>
 
         <Route path="/login" element={<Login />} />

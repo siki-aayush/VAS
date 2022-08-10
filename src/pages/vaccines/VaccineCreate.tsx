@@ -1,6 +1,5 @@
-import React from 'react';
-import VaccineForm from '../../components/vaccineForm/VaccineForm';
 import { Typography } from 'antd';
+import VaccineForm from '../../components/vaccineForm/VaccineForm';
 
 import './VaccineCreate.css';
 
@@ -9,7 +8,7 @@ const VaccineCreate = () => {
   return (
     <div className="addVaccine center">
       <Title className="addVaccine__title">Add Vaccine Service</Title>
-      <VaccineForm />
+      <VaccineForm create={true} />
     </div>
   );
 };

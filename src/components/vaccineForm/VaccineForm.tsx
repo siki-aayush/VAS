@@ -1,11 +1,15 @@
-import React from 'react';
-import { Button, Form, Input, InputNumber, Select, DatePicker, Checkbox, Row, Col, Typography } from 'antd';
-import './VaccineForm.css';
-import { vaccineService } from '../../interfaces';
-import reqInstance from '../../axios/axios';
+import { Button, DatePicker, Form, Input, InputNumber, Select, Typography } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import reqInstance from '../../axios/axios';
+import { vaccineService, vaccineServiceWithId } from '../../interfaces';
+import './VaccineForm.css';
 
-const VaccineForm = () => {
+interface vaccineFormProps {
+  initialValues?: vaccineServiceWithId;
+  create: boolean;
+}
+
+const VaccineForm = (props: vaccineFormProps) => {
   const { Option } = Select;
   const { RangePicker } = DatePicker;
   const { Title } = Typography;
@@ -23,14 +27,22 @@ const VaccineForm = () => {
       min_age: values.min_age,
     };
 
-    const resp = await reqInstance('/vaccine-services', {
-      method: 'POST',
-      data: vaccineServiceData,
-    });
-
-    if (resp.data.data) {
-      navigate('/vaccines');
+    try {
+      if (!props.create && props.initialValues) {
+        await reqInstance(`/vaccine-services/${props.initialValues.id}`, {
+          method: 'PUT',
+          data: { ...vaccineServiceData, id: props.initialValues.id },
+        });
+      } else {
+        await reqInstance('/vaccine-services', {
+          method: 'POST',
+          data: vaccineServiceData,
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
+    navigate('/vaccines');
   };
 
   const layout = {
@@ -51,12 +63,15 @@ const VaccineForm = () => {
   };
   /* eslint-enable no-template-curly-in-string */
 
+  console.log('from inside', props.initialValues);
+
   return (
     <Form
       {...layout}
       name="nest-messages"
       onFinish={onFinish}
       validateMessages={validateMessages}
+      initialValues={props.initialValues}
       size="large"
       className="vaccineForm"
     >
